@@ -1,42 +1,42 @@
 import React, { useState } from "react";
-import Menu from "./components/Menu";
+import Home from "./Home";
+import FoodCategory from "./FoodCategory";
+import MenuNav from "./components/MenuNav";
+import { Routes, Route } from "react-router-dom";
 import Cart from "./components/Cart";
-import CustomizationOverlay from "./components/CustomizationOverlay";
 
 const App = () => {
-  const [cartItems, setCartItems] = useState([]);
-  const [customizingItem, setCustomizingItem] = useState(null);
-
-  const addToCart = (item) => {
-    setCartItems([...cartItems, { ...item, id: new Date().getTime() }]);
-  };
-
-  const removeFromCart = (itemId) => {
-    setCartItems(cartItems.filter((item) => item.id !== itemId));
-  };
-
-  const openCustomization = (item) => {
-    setCustomizingItem(item);
-  };
-
-  const closeCustomization = () => {
-    setCustomizingItem(null);
-  };
-
   return (
     <>
-      <h1>Menu</h1>
-      <div className="app">
-        <Menu addToCart={addToCart} openCustomization={openCustomization} />
-        <Cart cartItems={cartItems} removeFromCart={removeFromCart} />
-        {customizingItem && (
-          <CustomizationOverlay
-            item={customizingItem}
-            onClose={closeCustomization}
-            onAddToCart={addToCart}
-          />
-        )}
-      </div>
+      <MenuNav />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/RestaurantFood"
+          element={<FoodCategory category="RESTAURANT FOOD" />}
+        />
+        <Route path="/BarFood" element={<FoodCategory category="BAR FOOD" />} />
+        <Route
+          path="/RoomServices"
+          element={<FoodCategory category="ROOM SERVICE" />}
+        />
+        <Route path="/Beers" element={<FoodCategory category="BEERS" />} />
+        <Route path="/Spirits" element={<FoodCategory category="SPIRITS" />} />
+        <Route path="/Wines" element={<FoodCategory category="WINE" />} />
+        <Route
+          path="/MixersAndJuices"
+          element={<FoodCategory category="MIXERS & JUICES" />}
+        />
+        <Route
+          path="/Cocktails"
+          element={<FoodCategory category="COCKTAILS" />}
+        />
+        <Route
+          path="/HotDrinks"
+          element={<FoodCategory category="HOT DRINKS" />}
+        />
+      </Routes>
     </>
   );
 };

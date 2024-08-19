@@ -1,21 +1,29 @@
-import React from "react";
+// import React from "react";
 
-const MenuItem = ({ item, addToCart, openCustomization }) => {
-  const handleAddToCart = () => {
-    if (item.customizations && item.customizations.length > 0) {
-      openCustomization(item);
-    } else {
-      addToCart(item);
-    }
-  };
+// const MenuItem = ({ name, sub_group }) => {
+//   console.log(name);
+//   return (
+//     <div className="menu-food-item">
+//       <p className="menu-food-item-name">{name}</p>
+//       <button className="add-btn">Add</button>
+//     </div>
+//   );
+// };
 
+// export default MenuItem;
+
+import { useContext } from "react";
+import { StoreContext } from "../context/StoreContext";
+
+const MenuItem = ({ name, id }) => {
+  const { addToCart } = useContext(StoreContext);
   return (
-    <li className="menu-food-item">
-      <div className="menu-food-item-name">{item.prnt_nam}</div>
-      <button onClick={handleAddToCart} className="add-btn">
-        Add
+    <div className="menu-food-item">
+      <p className="menu-food-item-name">{name}</p>
+      <button className="add-btn" onClick={() => addToCart(id)}>
+        +
       </button>
-    </li>
+    </div>
   );
 };
 
