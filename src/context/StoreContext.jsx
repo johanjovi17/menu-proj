@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import toast from "react-hot-toast";
 
 export const StoreContext = createContext(null);
 
@@ -11,10 +12,12 @@ const StoreContextProvider = (props) => {
     } else {
       setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     }
+    toast.success("item added to cart!");
   };
 
   const removeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+    toast.error("Item removed from cart");
   };
 
   const contextValue = {

@@ -1,20 +1,20 @@
-import React, { useState } from "react";
 import Home from "./Home";
 import FoodCategory from "./FoodCategory";
 import MenuNav from "./components/MenuNav";
 import { Routes, Route } from "react-router-dom";
 import Cart from "./components/Cart";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
     <>
+      <Toaster />
       <MenuNav />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         <Route
           path="/RestaurantFood"
-          index
           element={<FoodCategory category="RESTAURANT FOOD" />}
         />
         <Route path="/BarFood" element={<FoodCategory category="BAR FOOD" />} />
