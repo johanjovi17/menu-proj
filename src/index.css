@@ -152,3 +152,8 @@ h2 {
 .cart-items-item.name {
   max-width: 90px;
 }
+.menu {
+}
+.menu-explore-link {
+  text-decoration: none;
+}

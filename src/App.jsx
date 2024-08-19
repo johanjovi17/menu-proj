@@ -14,6 +14,7 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route
           path="/RestaurantFood"
+          index
           element={<FoodCategory category="RESTAURANT FOOD" />}
         />
         <Route path="/BarFood" element={<FoodCategory category="BAR FOOD" />} />

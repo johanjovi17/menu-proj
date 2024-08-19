@@ -21,7 +21,7 @@ const Menu = ({ addToCart }) => {
 
   return (
     <div className="menu">
-      <Link to="/RestaurantFood" className>
+      <Link to="/RestaurantFood" className="menu-explore-link">
         Explore menu
       </Link>
     </div>
