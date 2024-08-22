@@ -3,7 +3,8 @@ import { useContext } from "react";
 import { data } from "../data.js";
 
 const Cart = () => {
-  const { cartItems, removeFromCart } = useContext(StoreContext);
+  const { cartItems, removeFromCart, addToCart, getTotalCartAmount } =
+    useContext(StoreContext);
   return (
     <div className="cart-container">
       {Object.keys(cartItems).length === 0 ? (
@@ -16,16 +17,35 @@ const Cart = () => {
                 <div key={index} className="cart-items-item-container">
                   <p className="cart-items-item name">{item._prnt_nam} </p>
                   <p className="cart-items-item">{cartItems[item._itm_cd]}</p>
+                  <p className="cart-items-item">
+                    {item._sell_rate * cartItems[item._itm_cd]}
+                  </p>
                   <p
                     className="cart-items-item remove-btn"
                     onClick={() => removeFromCart(item._itm_cd)}
                   >
                     x
                   </p>
+                  <p
+                    className="cart-items-item add-btn"
+                    onClick={() => addToCart(item._itm_cd)}
+                  >
+                    +
+                  </p>
                 </div>
               );
             }
           })}
+          {Object.keys(cartItems).length > 0 ? (
+            <div className="total-container">
+              <p className="cart-subtotal-value flex items-center">
+                Total:{"  "}
+                {getTotalCartAmount()}
+              </p>
+            </div>
+          ) : (
+            " "
+          )}
         </div>
       )}
     </div>
